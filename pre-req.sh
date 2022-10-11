@@ -36,9 +36,9 @@ kubectl apply -f stork-spec.yaml
 echo "Step 5: Deploying Demo Applicatons"
 kubectl create ns demo
 sleep 5s
-kubectl apply -f postgres.yaml -n demo
+kubectl apply -f dataprotection/postgres.yaml -n demo
 sleep 10s 
-kubectl apply -f k8s-logo.yaml -n demo
+kubectl apply -f dataprotection/k8s-logo.yaml -n demo
 sleep 30s 
 kubectl get all -n demo
 sleep 10s
@@ -46,15 +46,15 @@ kubectl get pvc -n demo
 
 kubectl create ns pacman
 sleep 5s
-kubectl apply -f mongo-deployment.yaml -n pacman
+kubectl apply -f dataprotection/mongo-deployment.yaml -n pacman
 sleep 5 
-kubectl apply -f pacman-deployment.yaml -n pacman
+kubectl apply -f dataprotection/pacman-deployment.yaml -n pacman
 sleep 5 
-kubectl apply -f mongo-pvc.yaml -n pacman
+kubectl apply -f dataprotection/mongo-pvc.yaml -n pacman
 sleep 5
-kubectl apply -f mongo-service.yaml -n pacman
+kubectl apply -f dataprotection/mongo-service.yaml -n pacman
 sleep 5 
-kubectl apply -f pacman-service.yaml -n pacman 
+kubectl apply -f dataprotection/pacman-service.yaml -n pacman 
 sleep 5 
 
 echo "Demo Applications deployed successfully!"
