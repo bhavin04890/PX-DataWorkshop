@@ -1,10 +1,5 @@
 #!/bin/bash
 
-
-echo -n "Please enter a unique name for your S3 bucket and press [ENTER]: "
-read REGL_BUCKET
-echo "" | awk '{print $1}'
-
 if [ ! -f ~/usr/local/bin/eksctl ]; then
 	echo "Step 1: Installing eksctl to deploy Amazon EKS clusters"
 	curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
@@ -23,26 +18,22 @@ if [ ! -f ~/usr/local/bin/kubectl ]; then
 	kubectl version --client
 fi
 
-echo "Creating S3 buckets as backup targets"
-
-aws s3 mb s3://$REGL_BUCKET --region us-west-2
-
-echo "Step 3: Installing destination EKS cluster. This might take close to 20 minutes"
+echo "Step 1: Installing destination EKS cluster. This might take close to 20 minutes"
 eksctl create cluster -f eks-destination-cluster.yaml
 
 kubectl get nodes 
 kubectl create ns demo
-echo "Step 4: Installing Stork on destination EKS cluster"
+echo "Step 2: Installing Stork on destination EKS cluster"
 curl -fsL -o stork-spec.yaml "https://install.portworx.com/pxbackup?comp=stork&storkNonPx=true"
 kubectl apply -f stork-spec.yaml
 
-echo "Step 5: Deploying source EKS cluster. This might take close to 20 minutes!"
+echo "Step 3: Deploying source EKS cluster. This might take close to 20 minutes!"
 eksctl create cluster -f eks-source-cluster.yaml
 kubectl get nodes 
-echo "Step 6: Installing Stork on EKS cluster!"
+echo "Step 4: Installing Stork on EKS cluster!"
 curl -fsL -o stork-spec.yaml "https://install.portworx.com/pxbackup?comp=stork&storkNonPx=true"
 kubectl apply -f stork-spec.yaml
-echo "Step 7: Deploying Demo Applicatons"
+echo "Step 5: Deploying Demo Applicatons"
 kubectl create ns demo
 sleep 5s
 kubectl apply -f postgres.yaml -n demo
