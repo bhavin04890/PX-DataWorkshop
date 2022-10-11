@@ -26,7 +26,7 @@ sleep 15
 #eksctl delete cluster -f eks-destination-cluster.yaml
 
  
-eksctl utils write-kubeconfig --cluster px-dataprotection-source -r us-west-2
+eksctl utils write-kubeconfig --cluster px-source -r us-west-2
 #kubectl delete -f k8s-logo.yaml -n demo
 #sleep 30
 #kubectl delete -f postgres.yaml -n demo 
