@@ -35,7 +35,7 @@ kubectl delete ns mysql-demo
 
 kubectl delete ns postgres-demo
 kubectl delete ns cassandra-demo 
-
+helm uninstall pds -n pds-system
 kubectl delete stc --all -n kube-system
 
 eksctl delete cluster -f eks-source-cluster.yaml
