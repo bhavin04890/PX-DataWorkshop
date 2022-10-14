@@ -16,9 +16,9 @@ fi
 
 echo "Deleting the destination cluster"
 eksctl utils write-kubeconfig --cluster px-destination -r us-west-2
-kubectl delete -f k8s-logo.yaml -n demo
+kubectl delete -f dataprotection/k8s-logo.yaml -n demo
 sleep 30
-kubectl delete -f postgres.yaml -n demo 
+kubectl delete -f dataprotection/postgres.yaml -n demo 
 sleep 15
 kubectl delete ns demo
 kubectl delete deploy stork -n kube-system 
