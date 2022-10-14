@@ -54,3 +54,9 @@ kubectl delete ns pacman
 #aws s3 rm s3://$REGL_BUCKET --r us-west-2 --recursive
 #aws s3 rb s3://$REGL_BUCKET --r us-west-2
 
+echo "Installing Helm"
+sudo yum install openssl -y
+sleep 5
+sudo curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+sleep 10
+
