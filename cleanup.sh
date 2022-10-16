@@ -35,6 +35,11 @@ kubectl delete ns mysql-demo
 
 kubectl delete ns postgres-demo
 kubectl delete ns cassandra-demo 
+sudo yum install openssl -y
+sleep 5
+sudo curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+sleep 10
+
 helm uninstall pds -n pds-system
 kubectl delete stc --all -n kube-system
 
