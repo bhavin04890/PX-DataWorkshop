@@ -30,9 +30,9 @@ sleep 10
 
 kubectl delete sts --all -n jenkins 
 sleep 5 
-kubectl delete svc --all -n jenkins 
+kubectl delete pvc --all -n jenkins 
 sleep 5 
-kubectl delete pvc --all -n jenkins
+kubectl delete svc --all -n jenkins
 sleep 5 
 kubectl delete ns jenkins 
 sleep 10
@@ -48,9 +48,6 @@ kubectl delete pvc --all -n pg1
 sleep 5 
 kubectl delete ns pg1
 sleep 10
-
-echo "Configuring namespaces for PDS" 
-kubectl apply -f pds-namespaces.yaml
 
 
 
